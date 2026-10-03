@@ -10,7 +10,7 @@ void TestArena() {
 	ArenaAllocator arena(1024 * 1024 * SizeMB);
 
 	int n = 5;
-	int* arr = static_cast<int*>(arena.Allocate(n * sizeof(int), alignof(int)));
+	int* arr = static_cast<int*>(arena.Alloc(n * sizeof(int), alignof(int)));
 
 	for (int i = 0; i < n; i++) {
 		arr[i] = i * 2;

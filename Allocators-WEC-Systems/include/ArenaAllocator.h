@@ -13,7 +13,7 @@ public:
 	ArenaAllocator(const ArenaAllocator& other) = delete;
 	ArenaAllocator& operator=(const ArenaAllocator& other) = delete;
 
-	void* Allocate(size_t size, size_t alignment);
+	void* Alloc(size_t size, size_t alignment);
 	void Reset();
 	
 	size_t GetUsedSpace() const;
