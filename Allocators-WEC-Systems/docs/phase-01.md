@@ -25,6 +25,23 @@
 
 # Testing Phase 1 Implementation:
 
+## Automated Tests
+
+The tests in `tests/test_arena.cpp` are called by `RunArenaTests()`. Each test returns `true` on success or prints a failure reason and returns `false`. The runner reports pass/fail results, catches standard exceptions from each test, and returns the number of failed tests. `main()` returns exit code 0 when all tests pass or 1 when any test fails.
+
+| Function                   | Checks                                                                                                                                                                                                                                     |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `InitialStateAndReset()`   | A 64 KiB arena starts empty; allocating 16 bytes reports 16 used; reset clears used space; another 16-byte allocation returns the same address and reports 16 used; repeated reset leaves the arena empty                                  |
+| `ReadWrite()`              | Five integers can be allocated, written, and read back correctly; a second five-integer allocation succeeds without overlapping or moving behind the first; total used space equals the size of both arrays                                |
+| `Alignment()`              | After allocating one byte, an eight-byte allocation succeeds with each alignment in `{1, 2, 4, 8, 16, 32, 64}` and returns a divisible address; alignment 3 is rejected without changing used space                                        |
+| `Capacity()`               | Allocating the full 64 KiB capacity succeeds and reports the arena as full; another byte is rejected; in a fresh arena with eight bytes used, requesting one byte more than the remaining capacity is rejected without changing used space |
+| `PaddingExceedsCapacity()` | A 16-byte arena accepts a 15-byte allocation; its base is checked for 32-byte alignment; a one-byte request with alignment 32 is rejected because the required 17 padding bytes exceed the one byte remaining; used space stays unchanged  |
+**Results**:
+
+![[Pasted image 20261004011327.png]]
+
+## Manual Memory Usage Experiment
+
 - Created an Arena Allocator of 2GB
 - Allocated an array of 5 integers in it
 - Performed Read and Write operations on it

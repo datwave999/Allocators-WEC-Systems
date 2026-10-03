@@ -24,9 +24,18 @@
     <ClCompile Include="tests\test_arena.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="benchmarks\benchmark_arena.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ArenaAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\TestRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="benchmarks\BenchmarkRunner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,7 +7,7 @@
 
 ArenaAllocator::ArenaAllocator(size_t ArenaSize) : totalSize(ArenaSize)
 {
-						// OS decides, Size, what to do, what we will do
+												// OS decides, Size, what to do, what we will do
 	basePtr = static_cast<uint8_t*>(VirtualAlloc(nullptr, totalSize, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE));
 
 	if (basePtr == nullptr) {
@@ -54,6 +54,7 @@ void* ArenaAllocator::Alloc(size_t size, size_t alignment)
 	size_t usedSpace = GetUsedSpace();
 	size_t remainingSpace = totalSize - usedSpace;
 
+	// Check if padding space is available first, then safely substract (no wrap-around)
 	if (padding > remainingSpace) return nullptr;
 	if (size > remainingSpace - padding) return nullptr;
 

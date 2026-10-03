@@ -143,12 +143,15 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="benchmarks\benchmark_arena.cpp" />
     <ClCompile Include="src\ArenaAllocator.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="tests\test_arena.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="benchmarks\BenchmarkRunner.h" />
     <ClInclude Include="include\ArenaAllocator.h" />
+    <ClInclude Include="tests\TestRunner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

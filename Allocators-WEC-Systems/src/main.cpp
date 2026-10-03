@@ -1,10 +1,10 @@
 #include <iostream>
 
-void TestArena();
+#include "../tests/TestRunner.h"
+#include "ArenaAllocator.h"
 
 int main()
 {
-    std::cout << "Testing Phase-1:\n";
-
-    TestArena();
+	const int failures = RunArenaTests();
+	return failures == 0 ? 0 : 1;
 }
