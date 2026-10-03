@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Allocators-WEC-Systems/Allocators-WEC-Systems.vcxproj" />
+  <Project Path="Allocators-WEC-Systems/Allocators-WEC-Systems.vcxproj" Id="1cb93d1d-c279-4f83-9e66-0906c4213ffb" />
 </Solution>
