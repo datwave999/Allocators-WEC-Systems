@@ -41,6 +41,9 @@
     <ClInclude Include="include\ArenaAllocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\BaselinePipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="tests\TestRunner.h">
       <Filter>Header Files</Filter>
     </ClInclude>

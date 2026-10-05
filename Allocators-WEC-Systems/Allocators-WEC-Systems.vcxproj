@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="benchmarks\BenchmarkRunner.h" />
     <ClInclude Include="include\ArenaAllocator.h" />
+    <ClInclude Include="include\BasicPipeline.h" />
     <ClInclude Include="include\Pipeline.h" />
     <ClInclude Include="include\SPSCQueue.h" />
     <ClInclude Include="tests\TestRunner.h" />

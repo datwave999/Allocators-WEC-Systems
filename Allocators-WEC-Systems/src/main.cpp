@@ -1,14 +1,17 @@
 #include "../tests/TestRunner.h"
 #include "../benchmarks/BenchmarkRunner.h"
+#include "BasicPipeline.h"
 
 int main()
 {
-	int failures = RunArenaTests();
-	failures += RunSPSCTests();
+	int testResult = RunArenaTests();
+	testResult += RunSPSCTests();
+	if (testResult != 0) return 1;
 
-	if (failures != 0) return 1;
 	int benchmarkResult = RunArenaBenchmarks();
-	if (benchmarkResult != 0) return benchmarkResult;
+	benchmarkResult += RunPipelineBenchmarks();
+	benchmarkResult += RunBaselineBenchmarks();
+	if (benchmarkResult != 0) return 1;
 
-	return RunPipelineBenchmarks();
+	return 0;
 }

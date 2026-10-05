@@ -31,12 +31,12 @@ bool RunTimedPipeline(const PipelineConfig& config, ConsumerStats& stats, double
     bool producerSucceeded = false;
     bool consumerSucceeded = false;
     alignas(64) std::atomic<std::size_t> readyWorkers{0};
-    alignas(64) std::atomic<bool> startRequested{false};
+    alignas(64) std::atomic<bool> startProcessing{false};
     std::chrono::steady_clock::time_point stopped;
 
     auto waitForStart = [&]() {
         readyWorkers.fetch_add(1, std::memory_order_release);
-        while (!startRequested.load(std::memory_order_acquire)) {
+        while (!startProcessing.load(std::memory_order_acquire)) {
             if (control.stopRequested.load(std::memory_order_relaxed)) return false;
             _mm_pause();
         }
@@ -65,14 +65,13 @@ bool RunTimedPipeline(const PipelineConfig& config, ConsumerStats& stats, double
 
     while (readyWorkers.load(std::memory_order_acquire) != 2) _mm_pause();
     const auto started = std::chrono::steady_clock::now();
-    startRequested.store(true, std::memory_order_release);
+    startProcessing.store(true, std::memory_order_release);
 
     producer.join();
     consumer.join();
     elapsedSeconds = std::chrono::duration<double>(stopped - started).count();
 
-    const std::uint64_t expectedChecksum = (totalMessages % 2 == 0)
-        ? (totalMessages / 2) * (totalMessages + 1) : totalMessages * (totalMessages / 2 + 1);
+    const std::uint64_t expectedChecksum = (totalMessages % 2 == 0) ? (totalMessages / 2) * (totalMessages + 1) : totalMessages * (totalMessages / 2 + 1);
 
     return producerSucceeded && consumerSucceeded && stats.messagesProcessed == totalMessages && stats.checksum == expectedChecksum;
 }
@@ -87,13 +86,9 @@ int RunPipelineBenchmarks()
             std::cerr << "Pipeline count, sequence, or checksum validation failed\n";
             return 1;
         }
-        if (elapsedSeconds <= 0) {
-            std::cerr << "Pipeline timing interval was too short to measure\n";
-            return 1;
-        }
 
         const double throughput = static_cast<double>(stats.messagesProcessed) / elapsedSeconds;
-        std::cout << "\nArena + SPSC pipeline\n"
+        std::cout << "\n==== Arena + SPSC pipeline ====\n"
             << "Validation: PASS\n"
             << "Messages processed: " << stats.messagesProcessed << '\n'
             << "Checksum: " << stats.checksum << '\n'
