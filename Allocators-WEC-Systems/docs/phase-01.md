@@ -13,7 +13,7 @@
 
 - **The Bump Pointer:**
     - The Fix: We treat the 1GB block as a blank canvas. We maintain a single bump_pointer. When a user requests N bytes, we simply do bump_pointer += N. There are no hidden headers, no linked lists to search, and no wasted space.
-    - The Result: Allocation goes from taking hundreds of CPU cycles to exactly 1 cycle (basic addition). Internal Fragmentation is avoided.
+    - The Result: Allocation goes from taking hundreds of CPU cycles to exactly 1 cycle (basic addition). Allocator induced Internal Fragmentation is avoided.
 
 - **Bitwise Alignment Math (Fixes Hardware Penalties):**
     - The Fix: Unaligned data causes hardware penalties or crashes. Instead of using slow modulo division (%) to align our pointer, we use the bitwise formula: Aligned = (Pointer + Alignment - 1) & ~(Alignment - 1).

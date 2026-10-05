@@ -24,6 +24,9 @@
     <ClCompile Include="tests\test_arena.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\test_spsc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="benchmarks\benchmark_arena.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="benchmarks\BenchmarkRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SPSCQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

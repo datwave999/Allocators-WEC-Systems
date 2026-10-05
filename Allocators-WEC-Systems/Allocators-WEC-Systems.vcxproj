@@ -147,10 +147,12 @@
     <ClCompile Include="src\ArenaAllocator.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="tests\test_arena.cpp" />
+    <ClCompile Include="tests\test_spsc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="benchmarks\BenchmarkRunner.h" />
     <ClInclude Include="include\ArenaAllocator.h" />
+    <ClInclude Include="include\SPSCQueue.h" />
     <ClInclude Include="tests\TestRunner.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

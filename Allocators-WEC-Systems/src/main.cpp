@@ -6,7 +6,8 @@
 
 int main()
 {
-	const int failures = RunArenaTests();
+	int failures = RunArenaTests();
+	failures += RunSPSCTests();
 
 	if (failures != 0) return 1;
 	return RunArenaBenchmarks();

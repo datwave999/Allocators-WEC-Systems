@@ -259,6 +259,8 @@ int RunArenaTests()
 		{"Padding exceeds capacity", PaddingExceedsCapacity},
 	};
 
+	std::cout << "\n==== Arena Tests ====\n";
+
 	int failures = 0;
 
 	for (const auto& test : tests) {
