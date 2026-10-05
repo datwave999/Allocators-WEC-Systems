@@ -144,14 +144,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="benchmarks\benchmark_arena.cpp" />
+    <ClCompile Include="benchmarks\benchmark_pipeline.cpp" />
     <ClCompile Include="src\ArenaAllocator.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Pipeline.cpp" />
     <ClCompile Include="tests\test_arena.cpp" />
     <ClCompile Include="tests\test_spsc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="benchmarks\BenchmarkRunner.h" />
     <ClInclude Include="include\ArenaAllocator.h" />
+    <ClInclude Include="include\Pipeline.h" />
     <ClInclude Include="include\SPSCQueue.h" />
     <ClInclude Include="tests\TestRunner.h" />
   </ItemGroup>

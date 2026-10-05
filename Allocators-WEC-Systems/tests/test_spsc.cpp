@@ -108,7 +108,7 @@ bool Concurrent() {
             values[i] = i;
             while (!queue.Push(&values[i])) {
                 if (std::chrono::steady_clock::now() >= deadline) return;
-                std::this_thread::yield();
+                std::this_thread::yield(); // Bad for benchmark, causes cold cache
             }
         }
     });
@@ -125,6 +125,7 @@ bool Concurrent() {
                     }
                     std::this_thread::yield();
                 }
+                        // check value                  // check order
                 if (pointer != &values[expected] || *pointer != expected) {
                     correctOrder = false;
                 }

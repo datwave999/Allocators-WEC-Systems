@@ -94,8 +94,6 @@ This is a single-thread example. In the pipeline, one producer thread calls `Pus
 
 # Testing Phase 2 Implementation:
 
-The tests in `tests/test_spsc.cpp` are called by `RunSPSCTests()`. They follow the arena test runner's pass/fail format and return the number of failed tests. `main()` runs both test suites before the arena benchmarks and returns exit code 1 if either suite fails. These tests have been added but have not been built or run yet.
-
 | Function | Checks |
 | --- | --- |
 | `Construction()` | Requests round up correctly, including zero and one; usable capacity leaves one slot unused; an overflowing size throws `std::length_error` |
@@ -103,8 +101,6 @@ The tests in `tests/test_spsc.cpp` are called by `RunSPSCTests()`. They follow t
 | `SinglePointer()` | Push and pop preserve the exact pointer and value; the queue is empty afterward |
 | `FIFOAndWraparound()` | A four-slot queue fills and drains in FIFO order across 10 cycles, checking full and empty behavior while the positions wrap around |
 | `Concurrent()` | One thread pushes pointers to integers 0 through 999; another checks that each pointer and integer arrives in order using an eight-slot queue |
-
-The producer writes each integer before pushing its address. The array stays alive until both threads finish. A 15-second deadline stops retry loops if transfer fails to complete. Only the consumer changes the result flag; the main thread reads it after joining the consumer. This test checks integer transfer and ordering for this workload.
 
 ### Test Results:
 ![[Pasted image 20261005193749.png]]

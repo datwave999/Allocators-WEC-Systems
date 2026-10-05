@@ -159,6 +159,8 @@ int RunArenaBenchmarks()
 		{"Reset", Reset},
 	};
 
+	std::cout << "\n==== Arena Benchmarks ====\n";
+
 	for (const auto& benchmark : benchmarks) {
 		std::cout << '\n' << benchmark.name << '\n';
 		try {
@@ -172,5 +174,8 @@ int RunArenaBenchmarks()
 			return 1;
 		}
 	}
+
+	std::cout << "\n==============================\n";
+
 	return 0;
 }
